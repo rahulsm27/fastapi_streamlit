@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import time
 #from numpy import random
 
 # streamlit run ./app.py to run the streamlit app 
@@ -74,7 +75,7 @@ if text:
 
 # Check box
 if st.checkbox("show chart data"):
-    st.line_chart(chart_data)
+    st.line_chart(df_chart)
 
 add_selectobx = st.sidebar.selectbox(
     "Options?",options =["email","phone"])
@@ -83,3 +84,19 @@ add_slider =  st.sidebar.slider (label = "Number x", min_value = 1,max_value=100
 
 
 # use st.columns to layout app
+left_column , right_column = st.columns(2)
+left_column.button("press me")
+with right_column:
+    chosen = st.radio(label = "options",options =["email","phone"])
+    st.write(f"you are in {chosen}")
+
+
+
+# Progress
+latest_iteration = st.empty()
+bar = st.progress(0)
+
+for i in range(100):
+    latest_iteration.text(f'Iteration {i+1}')
+    bar.progress(i+1)
+    time.sleep(0.1)
