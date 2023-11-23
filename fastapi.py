@@ -6,6 +6,7 @@ app = FastAPI()
 @app.get('/')
 def home_page():
     return ("Message : Heelo world")
+# uvicorn main:app  to run the fast api app
 
 @app.get("/items/{item_id}")
 def echo(item_id : int ):
